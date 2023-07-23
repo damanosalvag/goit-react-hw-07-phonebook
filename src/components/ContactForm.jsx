@@ -73,43 +73,41 @@ export const ContactForm = () => {
     }
   };
   return (
-    <section>
-      <Box component="form" onSubmit={handleSubmit} autoComplete="off">
-        <TextField
-          sx={{ mb: 2 }}
-          fullWidth
-          required
-          error={error.errorName}
-          helperText={error.errorName && error.message}
-          id="outlined-error-helper-text"
-          label="Name"
-          name="name"
-          onChange={handleChange}
-          value={contact.name}
-        ></TextField>
-        <TextField
-          sx={{ mb: 2 }}
-          fullWidth
-          required
-          error={error.errorPhone}
-          helperText={error.errorPhone && error.message}
-          id="outlined-error-helper-text"
-          label="Phone Numer"
-          name="phone"
-          onChange={handleChange}
-          value={contact.phone}
-        ></TextField>
-        <Button
-          fullWidth
-          type="submit"
-          variant="contained"
-          color="success"
-          size="medium"
-          startIcon={<PersonAddAlt1Icon />}
-        >
-          Submit
-        </Button>
-      </Box>
-    </section>
+    <Box component="form" onSubmit={handleSubmit} autoComplete="off">
+      <TextField
+        sx={{ mb: 2 }}
+        fullWidth
+        required
+        error={error.errorName}
+        helperText={error.errorName && error.message}
+        id="outlined-error-helper-text"
+        label="Name"
+        name="name"
+        onChange={handleChange}
+        value={contact.name}
+      ></TextField>
+      <TextField
+        sx={{ mb: 2 }}
+        fullWidth
+        required
+        error={error.errorPhone}
+        helperText={error.errorPhone && error.message}
+        id="outlined-error-helper-text"
+        label="Phone Numer"
+        name="phone"
+        onChange={handleChange}
+        value={contact.phone}
+      ></TextField>
+      <Button
+        fullWidth
+        type="submit"
+        variant="contained"
+        color="success"
+        size="medium"
+        startIcon={<PersonAddAlt1Icon />}
+      >
+        Submit
+      </Button>
+    </Box>
   );
 };

@@ -24,7 +24,6 @@ export const ContactList = () => {
     contact.name.toLowerCase().includes(query.toLowerCase())
   );
   return (
-    <section>
       <List>
         {filteredContacts.map((contact) => (
           <ListItem
@@ -58,6 +57,5 @@ export const ContactList = () => {
           </ListItem>
         ))}
       </List>
-    </section>
   );
 };
