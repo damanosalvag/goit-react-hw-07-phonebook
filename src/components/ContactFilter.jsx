@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { filterContact } from "../features/contacts/contactSlice";
+import { Box, TextField, Typography } from "@mui/material";
 
 export const ContactFilter = () => {
   const dispatch = useDispatch();
@@ -7,14 +8,17 @@ export const ContactFilter = () => {
     dispatch(filterContact(e.target.value));
   };
   return (
-    <section>
-      <h3>Search contact</h3>
-      <input
-        type="text"
-        placeholder="Search..."
-        name="search"
+    <Box>
+      <Typography variant="h4" align="center" sx={{ mt: 4 }}>
+        Search contact
+      </Typography>
+      <TextField
+        id="standard-basic"
+        fullWidth
+        label="Search"
+        variant="standard"
         onChange={handleChange}
       />
-    </section>
+    </Box>
   );
 };

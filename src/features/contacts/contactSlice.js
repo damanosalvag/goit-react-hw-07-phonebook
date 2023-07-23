@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   list: [
-    { id: "id-1", name: "Rosie Simpson", phone: "459-12-56" },
-    { id: "id-2", name: "Hermione Kline", phone: "443-89-12" },
+    { id: "id-1", name: "Rosie Simpson", phone: "+1-4591256" },
+    { id: "id-2", name: "Hermione Kline", phone: "+57 4438912" },
   ],
   filter: "",
 };

@@ -1,9 +1,20 @@
 import { useSelector, useDispatch } from "react-redux";
 import { deleteContact } from "../features/contacts/contactSlice";
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import PersonIcon from "@mui/icons-material/Person";
 
 export const ContactList = () => {
   const contacts = useSelector((state) => state.contacts.list);
-  const query=useSelector((state)=>state.contacts.filter)
+  const query = useSelector((state) => state.contacts.filter);
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
@@ -14,15 +25,39 @@ export const ContactList = () => {
   );
   return (
     <section>
-      <h3>Contact List</h3>
-      <ol>
+      <List>
         {filteredContacts.map((contact) => (
-          <li key={contact.id}>
-            {contact.name} {contact.phone}
-            <button onClick={() => handleDelete(contact.id)}>Delete</button>
-          </li>
+          <ListItem
+            key={contact.id}
+            disableGutters
+            secondaryAction={
+              <Tooltip title="Delete" placement="right">
+                <IconButton onClick={() => handleDelete(contact.id)}>
+                  <DeleteIcon color="error" />
+                </IconButton>
+              </Tooltip>
+            }
+          >
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Typography variant="h6" align="left">
+                  {`${contact.name}`}
+                </Typography>
+              }
+            />
+            <ListItemText
+              primary={
+                <Typography variant="string" align="left">
+                  {`${contact.phone}`}
+                </Typography>
+              }
+            />
+          </ListItem>
         ))}
-      </ol>
+      </List>
     </section>
   );
 };
