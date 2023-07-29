@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../features/contacts/contactSlice";
-import { nanoid } from "nanoid";
+import { operations } from "../app/operations";
 import { Button, TextField, Box } from "@mui/material";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
@@ -57,15 +56,11 @@ export const ContactForm = () => {
     });
     handleValidation(contact);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (error.complete) {
-      dispatch(
-        addContact({
-          ...contact,
-          id: nanoid(5),
-        })
-      );
+      await dispatch(operations.addContact(contact));
+      dispatch(operations.getContacts());
       setContact({
         name: "",
         phone: "",

@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteContact } from "../features/contacts/contactSlice";
+import { operations } from "../app/operations";
+
 import {
   List,
   ListItem,
@@ -17,45 +18,46 @@ export const ContactList = () => {
   const query = useSelector((state) => state.contacts.filter);
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
-    dispatch(deleteContact(id));
+  const handleDelete = async (id) => {
+   await dispatch(operations.deleteContact(id));
+    dispatch(operations.getContacts());
   };
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(query.toLowerCase())
   );
   return (
-      <List>
-        {filteredContacts.map((contact) => (
-          <ListItem
-            key={contact.id}
-            disableGutters
-            secondaryAction={
-              <Tooltip title="Delete" placement="right">
-                <IconButton onClick={() => handleDelete(contact.id)}>
-                  <DeleteIcon color="error" />
-                </IconButton>
-              </Tooltip>
+    <List>
+      {filteredContacts.map((contact) => (
+        <ListItem
+          key={contact.id}
+          disableGutters
+          secondaryAction={
+            <Tooltip title="Delete" placement="right">
+              <IconButton onClick={() => handleDelete(contact.id)}>
+                <DeleteIcon color="error" />
+              </IconButton>
+            </Tooltip>
+          }
+        >
+          <ListItemIcon>
+            <PersonIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={
+              <Typography variant="h6" align="left">
+                {`${contact.name}`}
+              </Typography>
             }
-          >
-            <ListItemIcon>
-              <PersonIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography variant="h6" align="left">
-                  {`${contact.name}`}
-                </Typography>
-              }
-            />
-            <ListItemText
-              primary={
-                <Typography variant="string" align="left">
-                  {`${contact.phone}`}
-                </Typography>
-              }
-            />
-          </ListItem>
-        ))}
-      </List>
+          />
+          <ListItemText
+            primary={
+              <Typography variant="string" align="left">
+                {`${contact.phone}`}
+              </Typography>
+            }
+          />
+        </ListItem>
+      ))}
+    </List>
   );
 };

@@ -7,12 +7,10 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "./index.css";
-import { persistor } from "./app/store";
 import store from "./app/store";
 
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { SnackbarProvider } from "notistack";
-import { PersistGate } from "redux-persist/integration/react";
 
 const theme = createTheme({
   palette: {
@@ -31,9 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <ThemeProvider theme={theme}>
       <SnackbarProvider>
         <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
             <App />
-          </PersistGate>
         </Provider>
       </SnackbarProvider>
     </ThemeProvider>
