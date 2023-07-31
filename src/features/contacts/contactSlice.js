@@ -5,6 +5,7 @@ const initialState = {
   list: [],
   filter: "",
   isLoading: false,
+  modificator: 0,
   error: null,
 };
 const { getContacts, addContact, deleteContact } = operations;
@@ -24,6 +25,7 @@ const contactsSlice = createSlice({
       })
       .addCase(getContacts.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.modificator = 0;
         state.error = null;
         state.list = action.payload;
       })
@@ -32,6 +34,7 @@ const contactsSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(addContact.pending, (state) => {
+        state.modificator = 1;
         state.isLoading = true;
       })
       .addCase(addContact.fulfilled, (state) => {
@@ -43,6 +46,7 @@ const contactsSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(deleteContact.pending, (state) => {
+        state.modificator = -1;
         state.isLoading = true;
       })
       .addCase(deleteContact.fulfilled, (state) => {
